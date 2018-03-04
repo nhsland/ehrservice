@@ -3,10 +3,6 @@ allprojects {
     // use the idea plugin to generate idea project files
     apply plugin: 'idea'
 
-    plugins {
-      id "org.sonarqube" version "2.6.1"
-    }
-
     // use the maven plugin to access maven repos and install artifacts
     apply plugin: 'maven'
 
@@ -20,7 +16,14 @@ allprojects {
         }
         mavenLocal();
         mavenCentral();
+        maven {
+          url "https://plugins.gradle.org/m2/"
+        }
     }
+    dependencies {
+      classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
+    }
+    apply plugin: "org.sonarqube"
 
     tasks.withType(JavaCompile) {
         sourceCompatibility = "1.8"
