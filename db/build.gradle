@@ -25,6 +25,7 @@ flyway {
             "classpath:com/ethercis/db/migration"
     ]
     schemas = [ 'ehr' ]
+    baselineOnMigrate = "true"
 }
 
 tasks.flywayMigrate.dependsOn('jar')
