@@ -8,15 +8,10 @@ addons:
       secure: "m73/eVRfJnsnkQ3cMt3Mz3tPe95qAIKoGq7wsgCliTGtVWrjjEtWkeauTfMmZL/YHo+bJEpJYUC+Wk6n70hc1dJ7RmtWtE9+6KTIJCh52jOhpe72sGQiiyPTHDw+cgBuM5gDxoiS8MHnz0UcEN7IuBhfXeOTzKmexZkaX7wCatZYw3Yr+xVFBIPdOtW3Ug0azMVM8BxV+CEnNAwYM7iGgbTbQJbNYT3vo+GMJL1PKd7sbpytPwnsHKFBsSXbNioNEe/+xvoOGqmEZy9WNCT6Z2wuzexKRUsfpeUV84go3n1naJ+/n6V3oG2fcN81i9Y+bMq3qAEZ6nYVB0OZewu4CE4Pq5Hpn//qTsLIrSS7sAyHCf3Bg6MzN/rP/Ud4FBDQsQOMYIjajfe65fjyxfMsfMTK5pF0b18bcbwPGfWCUeT2yjHX0/1pLgDHNW8amUouQn4JQQSZCh3ukVZCTmXy1tVDb5O2pLiuwdTIxBBhYYdxxqNPuXKBjVvfsnvuCdU32PNVxjGjBcphwDs7SEOJLJ+oynNV77i1N2H4HyMeEWkLmxqKXfUNin/K0S/AQUtcAYNQ+6kPB2mhY63d8iqYvxzE2r9Homx4T8auqu6ErD1bIxS2SZSEAfw3XVp6LTti2bRuvXCtXv/1Btw1mkPimB72syDd6Y3lfGXuzRY1CYY="
 jdk:
   - oraclejdk8
-script:
-  - ./gradlew sonarqube
 cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.sonar/cache'
-    - '$HOME/.gradle'
-    - '.gradle'
-
 branches:
   only:
     - develop
@@ -26,7 +21,7 @@ before_install:
   - chmod +x install.sh
   - chmod +x custom_build.sh
   - chmod +x install_3rd_party_jars.sh
-  - chmod +x push_reports.sh
+  # - chmod +x push_reports.sh
   - sudo /etc/init.d/postgresql stop
   - sudo docker run -d -it --rm  --name="pgtest" -e POSTGRES_PASSWORD=postgres -p 5432:5432 robdykedotcom/docker-ethercis-pg:1.1.0
   - sleep 5
@@ -39,5 +34,5 @@ after_script:
   - sudo docker stop pgtest
   - echo stopped docker
 
-after_success:
-  - ./push_reports.sh
+# after_success:
+#   - ./push_reports.sh
