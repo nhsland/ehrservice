@@ -3,6 +3,10 @@ allprojects {
     // use the idea plugin to generate idea project files
     apply plugin: 'idea'
 
+    plugins {
+      id "org.sonarqube" version "2.6.1"
+    }
+
     // use the maven plugin to access maven repos and install artifacts
     apply plugin: 'maven'
 
