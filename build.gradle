@@ -1,4 +1,7 @@
 // settings applied to all projects
+plugins {
+    id "org.sonarqube" version "2.6.1"
+}
 allprojects {
     // use the idea plugin to generate idea project files
     apply plugin: 'idea'

@@ -12,6 +12,8 @@ cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.sonar/cache'
+    - '$HOME/.gradle'
+    - '.gradle'
 branches:
   only:
     - develop
@@ -28,7 +30,9 @@ before_install:
 
 install: ./install.sh
 
-script: ./custom_build.sh
+script:
+  - ./custom_build.sh
+  - ./gradlew sonarqube
 
 after_script:
   - sudo docker stop pgtest
